@@ -3,6 +3,87 @@
 
 Apuntes de Remzi: [link](http://pages.cs.wisc.edu/~remzi/Classes/354/Spring2017/Lectures/Day2/InClass-Day2.pdf)
 
+## Funciones ##
+
+**Ejemplo 1**: [link de simulación](http://www.pythontutor.com/c.html#code=%23include%20%3Cstdio.h%3E%0A%0Avoid%20show%28int%20x%29%3B%0Aint%20add%28int%20x,%20int%20y%29%3B%0A%0Aint%20main%28%29%20%7B%0A%20%20int%20f%20%3D%2010%3B%0A%20%20int%20g%20%3D%2020%3B%0A%20%20int%20h%20%3D%20add%28f,%20g%29%3B%0A%20%20show%28h%29%3B%20//%20to%20print%20some%20output%20to%20screen%0A%20%20int%20i%20%3D%20add%282,%203%29%3B%0A%20%20show%28i%29%3B%0A%20%20return%201%3B%0A%7D%0A%0A%0Aint%20add%28int%20x,%20int%20y%29%20%7B%0A%20%20return%20x%20%2B%20y%3B%0A%7D%0A%0Avoid%20show%28int%20x%29%20%7B%0A%20%20printf%28%22value%3A%20%25d%5Cn%22,x%29%3B%0A%7D%0A&curInstr=0&mode=display&origin=opt-frontend.js&py=c&rawInputLstJSON=%5B%5D)
+
+```C
+#include <stdio.h>
+
+void show(int x);
+int add(int x, int y);
+
+int main() {
+  int f = 10;
+  int g = 20;
+  int h = add(f, g);
+  show(h); // to print some output to screen
+  int i = add(2, 3);
+  show(i);
+  return 1;
+}
+
+int add(int x, int y) {
+  return x + y;
+}
+
+void show(int x) {
+  printf("value: %d\n",x);
+}
+```
+
+**Ejemplo 2**: [link de simulación](http://www.pythontutor.com/c.html#code=%23include%20%3Cstdio.h%3E%0A%0Avoid%20show%28int%20x%29%3B%0Avoid%20increment%28int%20x%29%3B%0A%0Aint%20main%28%29%20%7B%0A%20%20int%20f%20%3D%2010%3B%0A%20%20increment%28f%29%3B%0A%20%20show%28f%29%3B%0A%20%20return%200%3B%0A%7D%0A%0A//%20NOTE%3A%20new%20return%20type%20'void'%0Avoid%20increment%28int%20x%29%20%7B%0A%20%20%20%20x%20%3D%20x%20%2B%201%3B%0A%20%20%20%20show%28x%29%3B%0A%7D%0A%0Avoid%20show%28int%20x%29%20%7B%0A%20%20printf%28%22value%3A%20%25d%5Cn%22,x%29%3B%0A%7D%0A&curInstr=0&mode=display&origin=opt-frontend.js&py=c&rawInputLstJSON=%5B%5D)
+
+```C
+#include <stdio.h>
+
+void show(int x);
+void increment(int x);
+
+int main() {
+  int f = 10;
+  increment(f);
+  show(f);
+  return 0;
+}
+
+// NOTE: new return type 'void'
+void increment(int x) {
+  x = x + 1;
+  show(x);
+}
+
+void show(int x) {
+  printf("value: %d\n",x);
+}
+```
+
+**Ejemplo 3**: [link de simulación](http://www.pythontutor.com/c.html#code=%23include%20%3Cstdio.h%3E%0A%0Avoid%20show%28int%20x%29%3B%0Avoid%20increment%28int*%20x%29%3B%0A%0Aint%20main%28%29%20%7B%0A%20%20int%20f%20%3D%2010%3B%0A%20%20show%28f%29%3B%0A%20%20increment%28%26f%29%3B%0A%20%20show%28f%29%3B%0A%20%20return%200%3B%0A%7D%0A%0A//%20NOTE%3A%20new%20return%20type%20'void'%0Avoid%20increment%28int*%20x%29%20%7B%0A%20%20*x%20%3D%20*x%20%2B%201%3B%0A%7D%0A%0Avoid%20show%28int%20x%29%20%7B%0A%20%20printf%28%22value%3A%20%25d%5Cn%22,x%29%3B%0A%7D%0A&curInstr=0&mode=display&origin=opt-frontend.js&py=c&rawInputLstJSON=%5B%5D)
+
+```C
+#include <stdio.h>
+
+void show(int x);
+void increment(int* x);
+
+int main() {
+  int f = 10;
+  show(f);
+  increment(&f);
+  show(f);
+  return 0;
+}
+
+// NOTE: new return type 'void'
+void increment(int* x) {
+  *x = *x + 1;
+}
+
+void show(int x) {
+  printf("value: %d\n",x);
+}
+```
+
 ## Apuntadores ##
 
 **Ejemplo 1**: [link de simulación](http://www.pythontutor.com/c.html#code=%23include%20%3Cstdio.h%3E%0A%0Avoid%20show%28int%20v%29%3B%0Avoid%20show_address%28int%20*p%29%3B%0A%0A%0Aint%20main%28%29%20%7B%0A%20%20int%20x%3B%0A%20%20int*%20xp%3B%20%20//%20also%20fine%20to%20do%20'int%20%20%20%20%20*xp%3B'%0A%20%20%0A%20%20x%20%3D%20100%3B%0A%20%20xp%20%3D%20%26x%3B%0A%20%20show%28x%29%3B%0A%20%20show_address%28%26x%29%3B%0A%20%20show_address%28xp%29%3B%0A%7D%0A%0Avoid%20show%28int%20v%29%20%7B%0A%20%20printf%28%22value%3A%20%25d%5Cn%22,v%29%3B%0A%7D%0A%0Avoid%20show_address%28int%20*p%29%20%7B%0A%20%20printf%28%22address%3A%20%25X%5Cn%22,p%29%3B%0A%7D&curInstr=0&mode=display&origin=opt-frontend.js&py=c&rawInputLstJSON=%5B%5D)
