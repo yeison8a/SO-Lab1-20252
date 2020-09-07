@@ -155,3 +155,22 @@ Para escribir un entero en formato binario (no ASCII), usted puede usar **fwrite
 
 Note el uso tipico de la herramienta **wzip** en elcual se puede usar redirección para escribir la salida comprimida a un archivo. Por ejemplo, para comprimir el archivo **file.txt** a un (que se espera mas pequeño) **file.z**, usted podria teclear:
 
+```bash
+prompt> ./wzip file.txt > file.z
+```
+
+El signo **mayor que** es el operador redirección de la terminal UNIX; en este caso, es el encargado que la salida del comando **wzip** sea escrita al archivo **file.z** (en vez de ser mostrada en pantalla). 
+
+La herramienta **unzip** simplemente hace la operación opuesta, tomando un archivo comprimido y escribiendo (a la salida estandar nuevamente) los resultados sin comprimir. Por ejemplo, para ver el contenido del archivo **file.txt**, el comando a emplear usando esta herramienta sería:
+
+```bash
+prompt> ./wunzip file.z
+```
+
+Para leer un archivo comprimido, **wunzip** podria hacer uso de una función como **fread()** por ejemplo. Por otro lado, para imprimir el contenido a salida estandar podría hacer uso de **printf()**.
+
+
+**Detalles de implementación**:
+* La invocación correcta permitira pasar uno o mas archivos a traves de la linea de comandos al programa. Si no se especifican archivos, el programa debera salir empleando la llamada **exit** con codigo de retorno **1**, no sin antes imprimir **"wzip: file1 [file2 ...]"** (seguido por una nueva linea) o **"wunzip: file1 [file2 ...]"** (seguido por una nueva linea) para **wzip** y **wunzip** respectivamente.
+* El formato del archivo comprimido debe coincidir con la descripción de arriba exactamente (un entero de 4-bytes seguiro por un caracter).
+* Tenga en cuenta que si se pasan varios archivos a **wzip**, estos se comprimen en una única salida comprimida y, cuando se descomprimen, estos se convertiran en una única secuencia de texto sin comprimir (por lo tanto, se pierde la información de que varios archivos se ingresaron originalmente en wzip). Lo mismo aplica para **wunzip**.
