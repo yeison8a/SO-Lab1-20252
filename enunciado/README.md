@@ -133,3 +133,25 @@ even this line, which has barfood in it, will be printed.
 * Si se especifica un **término de búsqueda** pero no un archivo, **wgrep** debería funcionar, pero en lugar de leer desde un archivo, wgrep debería leer desde la entrada estándar (**stdin**). Hacerlo asi es mas fácil. ya que el fludo de archivos **stdin** abierdo de modo que podrá usar **fgets()** o rutinas especiales para leerlo.
 * Por simplicidad, si se pasa una cadena vacia como parametro de busqueda, **wgrep** puede mostrar ninguna linea o todas las lineas; cualquiera de las dos formas anteriores es aceptable.
 
+## wzip and wunzip ##
+
+Las próximas herramientas que usted deberá desarrollar vienen en pareja ya que una (**wzip**) es una herramienta para la compresión de archivos, y la otra (**wunzip**) es una herramienta de descompresión.
+
+El tipo de descompresión usado en este caso, es una forma simple de descompresion llamada **run-length encoding (RLE)**. **RLE** es bastante simple: Cuando se encuentren **n** caracteres del mismo tipo en una fila, la herramienta de compresión (**wzip**) reemplazará dicha secuencia por el numero de veces que se repite el caracter seguido por este. Por ejemplo si se encuentra en una linea del archivo la siguiente secuencia de caracteres:
+
+```
+aaaaaaaaaabbbb
+```
+
+La herramienta la reemplazara por la secuencia:
+
+```
+10a4b
+```
+
+Sin embargo, el formato exacto del archivo comprimido es bastante importante para el caso; pues aqui, usted deberá escribir un entero de 4-bytes en formato binario seguido por un caracter ascci sencillo. Por lo tanto, el archivo comprimido consistira en entradas de 5-bytes, cada una de las cuasles esta compuesta de una entero de 4.bytes (la longitud asociada a la cadena de caracteres iguales) y un único caracter.
+
+Para escribir un entero en formato binario (no ASCII), usted puede usar **fwrite()** o cualquier otra función de utitilidad. Lea el manual (**man**) para mas detalles. Para **wzip**, toda la salida podrá ser escrita a la salida estándar (el **stdout** file stream, el cual como **stdin**, es abierto cuando el programa empieza a ejecutarse).
+
+Note el uso tipico de la herramienta **wzip** en elcual se puede usar redirección para escribir la salida comprimida a un archivo. Por ejemplo, para comprimir el archivo **file.txt** a un (que se espera mas pequeño) **file.z**, usted podria teclear:
+
