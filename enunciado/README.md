@@ -1,11 +1,11 @@
 # Unix Utilities #
 
-> Este laboratorio es una versión traducida lo mas fielmente posible del laboratorio Unix Utilities ([link](https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-utilities)) de Remzi.
+> Este laboratorio es una versión traducida lo más fielmente posible del laboratorio Unix Utilities ([link](https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-utilities)) de Remzi.
 
-**Antes de empezar**: Se recomienda hacer un repaso de los conceptos de lenguaje C agregados en la guia ([link](../ejemplos/README.md))
+**Antes de empezar**: Se recomienda hacer un repaso de los conceptos de lenguaje C agregados en la guía ([link](../ejemplos/README.md))
 
 
-En este proyecto, se construiran unas versiones muy simples de algunos comandos usados comúnmente en linux. 
+En este proyecto, se construirán unas versiones muy simples de algunos comandos usados comúnmente en linux. 
 
 **Objetivos**
 
@@ -13,7 +13,7 @@ En este proyecto, se construiran unas versiones muy simples de algunos comandos 
 2. Familiarizarse con el manejo de la consola de Linux.
 3. Aprender un poco la forma en que son implementadas las utilidades de Linux.
 
-Si bien el proyecto se centra en escribir programas C simples, puede ver en lo anterior que incluso eso requiere un montón de otros conocimientos previos, incluida una idea básica de qué es un shell y cómo usar la línea de comandos en algunos sistemas basados en UNIX ( ej., Linux o macOS), cómo usar un editor como emacs y, por supuesto, una comprensión básica de la programación en C. Si aún no tiene estas habilidades, este no es el lugar adecuado para comenzar.
+Si bien el proyecto se centra en escribir programas C simples, puede ver en lo anterior que incluso eso requiere un montón de otros conocimientos previos, incluída una idea básica de qué es un shell y cómo usar la línea de comandos en algunos sistemas basados en UNIX ( ej., Linux o macOS), cómo usar un editor como emacs y, por supuesto, una comprensión básica de la programación en C. Si aún no tiene estas habilidades, este no es el lugar adecuado para comenzar.
 
 
 **Entregables**
@@ -46,7 +46,7 @@ El comando anterior creará un único binario ejecutable llamado **wcat** que lu
 
 Para codificar el programa deberá usar algunas rutinas de biblioteca de la biblioteca estándar de C (a menudo llamada libc) para implementar el código fuente de este programa (wcat.c). Todo el código C se vincula automáticamente con la biblioteca C, que está llena de funciones útiles que puede llamar para implementar su programa. 
 
-Para este proyecto, se recomienda utilizar las siguientes rutinas para realizar la entrada y salida de archivos: ```fopen ()```, ```fgets ()``` y ```fclose ()```. Siempre que use una nueva función como esta, lo primero que debe hacer es leer sobre ella: ¿de qué otra manera aprenderá a usarla correctamente? (Puede consultar las notas de clase que hablan sobre el manejo de archivos [link](https://github.com/dannymrock/UdeA-SO-Lab/blob/master/lab0/lab0b/parte6/README.md)).
+Para este proyecto se recomienda utilizar las siguientes rutinas para realizar la entrada y salida de archivos: ```fopen ()```, ```fgets ()``` y ```fclose ()```. Siempre que use una nueva función como esta, lo primero que debe hacer es leer sobre ella: ¿de qué otra manera aprenderá a usarla correctamente? (Puede consultar las notas de clase que hablan sobre el manejo de archivos [link](https://github.com/dannymrock/UdeA-SO-Lab/blob/master/lab0/lab0b/parte6/README.md)).
 
 En los sistemas UNIX, la mejor manera de leer acerca de tales funciones es usar las llamadas páginas man (abreviatura de manual). 
 
@@ -68,7 +68,7 @@ if (fp == NULL) {
 }
 ```
 
-El fragmento de código mostrado anteriormente hace lo siguiente. Primero, como se podra ver **fopen()** toma dos argumentos: el nombre del archivo y el modo. Este último solo indica lo que planeamos hacer con el archivo. En este caso, como deseamos leer el archivo, pasamos **"r"** como segundo argumento. 
+El fragmento de código mostrado anteriormente hace lo siguiente. Primero, como se podrá ver **fopen()** toma dos argumentos: el nombre del archivo y el modo. Este último solo indica lo que planeamos hacer con el archivo. En este caso, como deseamos leer el archivo, pasamos **"r"** como segundo argumento. 
 
 En segundo lugar, observe la comprobación crítica que determina si **fopen()** realmente tuvo éxito. La lectura de la página del manual indica los detalles de lo que se devuelve **fopen()** cuando se encuentra un error; en este caso, la página de manual de macOS dice:
 
